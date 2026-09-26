@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "code": "npx playwright codegen",
-    "report":  "npx playwright show-report",
-    "test": "npx playwright test"
+    "report": "npx playwright show-report",
+    "test": "npx playwright test 2.spec.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mnmlsniper/pw8#readme",
   "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.63.0",
     "@types/node": "^26.5.1"
   }
