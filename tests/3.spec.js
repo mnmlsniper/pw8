@@ -22,7 +22,7 @@ return password;
 // return faker.internet.password();
 }
 
- test.only('test', async ({ page }) => {
+ test('test', async ({ page }) => {
     /*
   const dogs =['Белка', 'Бонд', 'Кейси'];
   console.log(dogs);
