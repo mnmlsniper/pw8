@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "code": "npx playwright codegen",
+    "allure": "npx allure generate &&npx allure open",
+    "allureFile": "npx allure awesome ./allure-results --single-file",
+    "code": "npx playwrightcodegen",
     "report": "npx playwright show-report",
     "test": "npx playwright test"
   },
@@ -23,6 +25,8 @@
   "devDependencies": {
     "@faker-js/faker": "^10.6.0",
     "@playwright/test": "^1.63.0",
-    "@types/node": "^26.5.1"
+    "@types/node": "^26.5.1",
+    "allure": "^3.22.1",
+    "allure-playwright": "^3.14.0"
   }
 }
