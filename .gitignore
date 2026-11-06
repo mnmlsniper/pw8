@@ -10,3 +10,7 @@ allure-report
 allure-results
 src/.DS_Store
 .DS_Store
+coverage-output/
+pw-radar-report.html
+pw-radar-results.json
+logs/
