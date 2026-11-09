@@ -1,36 +1,35 @@
 import { test, expect } from '../src/fixtures.js';
-//todo вынести url
-const urlApi = 'https://apichallenges.com';
- test('Пользователь может зарегистрироваться используя email и пароль ', async ({ request }) => {
-    let response = await request.post(`${urlApi}/api/challenger`);
-    const headers = response.headers();
-    const token = headers['x-challenger'];
+  let token;
 
-    response = await request.get(`${urlApi}/api/challenges`,{
-        headers: {
-            'x-challenger': token
-        }
+test.describe('Challenge', () => {
+    test.beforeAll(async ({ api }) => {
+        token = await api.challenger.post();
+            
+    console.log(`https://apichallenges.com/gui/challenges/${token}`);
     });
-    let body = await response.json();   
-    expect(body.challenges.length).toEqual(99);
-    response = await request.post(`${urlApi}/api/todos`,{
-        headers: {
-            'x-challenger': token
-        },
-        data: {
-             "title": "A title", // faker
-            "doneStatus": false,
-            "description": "my description"
-        }
-    });
-     body = await response.json();
-     //todo
-         expect(body.title).toEqual('A title');
-
-    console.log(`${urlApi}/gui/challenges/${headers['x-challenger']}`);
 
 
+ test('GET /api/challenges 200 @api', async ({ api }) => {
 
+    // ТЕСТ - api фикстура - отдает фасад сервиса, который инкапсулирует все api методы,
+  //  console.log(token);
+    let {body} = await api.challenges.get(token);
 
+     expect(body.challenges.length).toEqual(99);
+});
+
+ test('POST /api/todos 201 @api Авторизованный пользователь может создать туду', async ({ api }) => {
+//todo унести в билдер
+    const data = {
+        "title": "A title", // faker
+        "doneStatus": false,
+        "description": "my description"
+    };
+    let {body} = await api.todos.post(token, data);
+    //todo проверять все поля, а не только title
+ expect(body.title).toEqual('A title');
 
 });
+
+});
+
